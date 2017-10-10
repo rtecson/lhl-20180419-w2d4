@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  SecondViewController.h
 //  NSNotificationCenter-Example
 //
 //  Created by Roland Tecson on 2017-10-10.
@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface SecondViewController : UIViewController
 
-@property (strong, nonatomic) UIWindow *window;
-
+@property (weak, nonatomic) IBOutlet UIView *blueBox;
 
 @end
-
