@@ -90,12 +90,20 @@
                                     <constraint firstAttribute="height" constant="200" id="gQX-6W-Q72"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRN-v1-gdV">
+                                <rect key="frame" x="290" y="84" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="pJd-tK-m2b" kind="show" id="7Ad-nx-PeW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ifm-ab-GFm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="2js-40-bnz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RaM-es-SQg" secondAttribute="trailing" id="39v-hJ-Xz4"/>
                             <constraint firstItem="RaM-es-SQg" firstAttribute="top" secondItem="2ck-Pw-O7o" secondAttribute="bottom" constant="8" id="Ac7-lp-9Lg"/>
+                            <constraint firstItem="DRN-v1-gdV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="CkN-C8-DyE"/>
                             <constraint firstItem="Ifm-ab-GFm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ctq-1k-k4K"/>
                             <constraint firstItem="RaM-es-SQg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Djc-vQ-mMl"/>
                             <constraint firstItem="2ck-Pw-O7o" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="64" id="E0n-sU-pwx"/>
@@ -104,6 +112,7 @@
                             <constraint firstItem="2ck-Pw-O7o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="YS6-Au-O0w"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2ck-Pw-O7o" secondAttribute="trailing" id="cg2-KB-2ca"/>
                             <constraint firstItem="B0T-NV-BUH" firstAttribute="top" secondItem="RaM-es-SQg" secondAttribute="bottom" constant="8" id="oTc-Kf-8s0"/>
+                            <constraint firstItem="DRN-v1-gdV" firstAttribute="leading" secondItem="Ifm-ab-GFm" secondAttribute="trailing" constant="43" id="wVp-a7-3lr"/>
                         </constraints>
                     </view>
                     <connections>
@@ -115,6 +124,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="560.79999999999995" y="16.641679160419791"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8tF-qQ-mok">
+            <objects>
+                <viewController id="pJd-tK-m2b" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dRd-dA-OZB"/>
+                        <viewControllerLayoutGuide type="bottom" id="SCd-3l-0JF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ucf-Xj-FNo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uz6-D7-0kg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1410" y="17"/>
         </scene>
         <!--Second-->
         <scene sceneID="GPo-f7-Q0y">
@@ -154,7 +181,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ynA-xi-azx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="qSx-HS-aPO">
                     <connections>
-                        <action selector="viewPanned:" destination="D5n-fw-J7J" id="yDg-Ip-1gf"/>
+                        <action selector="viewPanned:" destination="D5n-fw-J7J" id="EdW-Dh-Cw9"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>

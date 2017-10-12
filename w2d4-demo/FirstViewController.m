@@ -27,10 +27,10 @@ NSString * const kNotificationButtonDidPress = @"kNotificationButtonDidPress";
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
     [self watchKeyboardNotifications:notificationCenter];
-//    [self watchTextFieldChanges];
-//    [self watchButtonPressedNotifications:notificationCenter];
-//    [self setupTapGestureRecognizer];
-//    [self watchAllNotifications:notificationCenter];
+    [self watchTextFieldChanges];
+    [self watchButtonPressedNotifications:notificationCenter];
+    [self setupTapGestureRecognizer];
+    [self watchAllNotifications:notificationCenter];
 }
 
 - (void)dealloc {
@@ -45,30 +45,31 @@ NSString * const kNotificationButtonDidPress = @"kNotificationButtonDidPress";
 
 - (void)watchKeyboardNotifications:(NSNotificationCenter *)notificationCenter {
     // Notification using a separate notification observer
+    typeof(self) __weak weakSelf = self;
     self.keyboardWillShowObserver = [notificationCenter addObserverForName:UIKeyboardWillShowNotification
                                                         object:nil
                                                          queue:nil
                                                     usingBlock:^(NSNotification * _Nonnull notification) {
-                                                        NSLog(@"%@", notification.name);
-                                                        self.infoLabel.text = notification.name;
+                                                        NSLog(@"In watchKeyboardNotifications: %@", notification.name);
+                                                        weakSelf.infoLabel.text = notification.name;
                                                     }];
-    
+
     // Notification using self as the observer
     [notificationCenter addObserver:self
-               selector:@selector(keyboardDidShowNotificationReceived:)
-                   name:UIKeyboardDidShowNotification
-                 object:nil];
+                           selector:@selector(keyboardDidShowNotificationReceived:)
+                               name:UIKeyboardDidShowNotification
+                             object:nil];
 }
 
 // Notification callback
 - (void)keyboardDidShowNotificationReceived:(NSNotification *)notification {
-    NSLog(@"%@", notification.name);
+    NSLog(@"In keyboardDidShowNotificationReceived: %@", notification.name);
     self.infoLabel.text = notification.name;
 }
 
 // Notification callback
 - (void)buttonPressedNotificationReceived:(NSNotification *)notification {
-    NSLog(@"%@", notification.name);
+    NSLog(@"In buttonPressedNotificationReceived: %@", notification.name);
     self.infoLabel.text = notification.name;
 }
 
@@ -81,7 +82,7 @@ NSString * const kNotificationButtonDidPress = @"kNotificationButtonDidPress";
            forKeyPath:@"text"
               options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
               context:nil];
-    
+
     // Add notification for control event
     [self.textField addTarget:self
                        action:@selector(textFieldDidChange:)
@@ -90,6 +91,7 @@ NSString * const kNotificationButtonDidPress = @"kNotificationButtonDidPress";
 
 - (void)textFieldDidChange:(UITextField *)sender {
     self.text = sender.text;
+    NSLog(@"In textFieldDidChange: text = %@", sender.text);
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -122,7 +124,7 @@ NSString * const kNotificationButtonDidPress = @"kNotificationButtonDidPress";
     self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
     [self.tapGestureRecognizer setNumberOfTouchesRequired:2];
     [self.imageView addGestureRecognizer:self.tapGestureRecognizer];
-    
+
     // Add notification for a tap gesture event
     [self.tapGestureRecognizer addTarget:self
                                   action:@selector(imageTapped:)];
@@ -140,7 +142,7 @@ NSString * const kNotificationButtonDidPress = @"kNotificationButtonDidPress";
                                     object:nil
                                      queue:nil
                                 usingBlock:^(NSNotification * _Nonnull note) {
-                                    NSLog(@"%@", note.name);
+                                    NSLog(@"In watchAllNotifications: %@", note.name);
                                 }];
 }
 
