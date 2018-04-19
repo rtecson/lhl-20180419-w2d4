@@ -26,17 +26,17 @@ NSString * const kNotificationButtonDidPress = @"kNotificationButtonDidPress";
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
-    [self watchKeyboardNotifications:notificationCenter];
-    [self watchTextFieldChanges];
-    [self watchButtonPressedNotifications:notificationCenter];
+//    [self watchKeyboardNotifications:notificationCenter];
+//    [self watchTextFieldChanges];
+//    [self watchButtonPressedNotifications:notificationCenter];
     [self setupTapGestureRecognizer];
-    [self watchAllNotifications:notificationCenter];
+//    [self watchAllNotifications:notificationCenter];
 }
 
 - (void)dealloc {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
-    [notificationCenter removeObserver:self.keyboardWillShowObserver];
+//    [notificationCenter removeObserver:self.keyboardWillShowObserver];
     [notificationCenter removeObserver:self];
 }
 
@@ -45,15 +45,15 @@ NSString * const kNotificationButtonDidPress = @"kNotificationButtonDidPress";
 
 - (void)watchKeyboardNotifications:(NSNotificationCenter *)notificationCenter {
     // Notification using a separate notification observer
-    typeof(self) __weak weakSelf = self;
-    self.keyboardWillShowObserver = [notificationCenter addObserverForName:UIKeyboardWillShowNotification
-                                                        object:nil
-                                                         queue:nil
-                                                    usingBlock:^(NSNotification * _Nonnull notification) {
-                                                        NSLog(@"In watchKeyboardNotifications: %@", notification.name);
-                                                        weakSelf.infoLabel.text = notification.name;
-                                                    }];
-
+//    typeof(self) __weak weakSelf = self;
+//    self.keyboardWillShowObserver = [notificationCenter addObserverForName:UIKeyboardWillShowNotification
+//                                                        object:nil
+//                                                         queue:nil
+//                                                    usingBlock:^(NSNotification * _Nonnull notification) {
+//                                                        NSLog(@"In watchKeyboardNotifications: %@", notification.name);
+//                                                        weakSelf.infoLabel.text = notification.name;
+//                                                    }];
+//
     // Notification using self as the observer
     [notificationCenter addObserver:self
                            selector:@selector(keyboardDidShowNotificationReceived:)
@@ -83,15 +83,15 @@ NSString * const kNotificationButtonDidPress = @"kNotificationButtonDidPress";
               options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
               context:nil];
 
-    // Add notification for control event
+    // Add notification for control event - Target-Action pattern
     [self.textField addTarget:self
                        action:@selector(textFieldDidChange:)
              forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void)textFieldDidChange:(UITextField *)sender {
-    self.text = sender.text;
     NSLog(@"In textFieldDidChange: text = %@", sender.text);
+    self.text = sender.text;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -114,7 +114,8 @@ NSString * const kNotificationButtonDidPress = @"kNotificationButtonDidPress";
 - (IBAction)buttonPressed:(UIButton *)sender {
     // Generate a notification event
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter postNotificationName:kNotificationButtonDidPress object:self];
+    [notificationCenter postNotificationName:kNotificationButtonDidPress
+                                      object:self];
 }
 
 
